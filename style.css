@@ -19,18 +19,18 @@ body{
 }
 
 .container{
-    background-color: lightgray;
+    background-color: white;
+    flex-direction: row;
     display: flex;
     width: 1200px;
     height: 100%;
-
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 .leftbar{
     flex-direction: column;
-    width: 30%;
     background-color:white;
-    display: none;
-    justify-content: space-between;
+    display: block;
+    width: 0%;
 }
 
 .orders{
@@ -41,7 +41,7 @@ body{
 }
 
 .order{
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid lightgray;
     display: flex;
     flex-flow: row;
     align-content: flex-end;
@@ -53,7 +53,7 @@ body{
     
 }
 .order .left{
-    margin-right: 15%;
+    margin-right: 10%;
 }
 
 .order .right{
@@ -61,22 +61,20 @@ body{
     width: auto;
 }
 .order .order-id{
-    font-size: 16pt;
+    font-size: 14pt;
 }
 
 .order .date{
-    font-size: 18pt;
+    font-size: 16pt;
 }
 .order .status{
     color: green;
 }
 
-.order .shipped{
 
-}
 .order:hover{
-    border-bottom: 1px solid gray;
-    background-color: lightblue;
+    border-bottom: 1px solid lightgray;
+    background-color: #ecf2f5;
 }
 
 .search{
@@ -94,9 +92,12 @@ body{
     flex-direction: column;
     width: 75%;
     height: 100vh;
-    justify-content: space-between;
+    
 }
 
+.content{
+    height: 100%;
+}
 
 header{
     text-align: center;
@@ -104,22 +105,72 @@ header{
     font-size: 12pt;
 }
 
+.info header{
+    height: 3em;
+    border-bottom: solid 1px lightgray;
+    background-color: #ecf2f5;
+}
+
 footer{
     background-color: #323b53;
     min-height: 3em;
 }
 
+.container{ 
+    display: flex;
+    flex-direction: block;
+    width: 100%;
+}
 
+.order-info{
+    display: flex;
+    flex-direction: row;
+    background-color: #ecf2f5;
+    min-height: 35%;
+    border-bottom: 2px solid lightgray;
+    justify-content: space-between;
+}
+
+.shipping-info{
+    height: 30%;
+    border-bottom: 2px solid lightgray;
+}
+
+.content p{
+    padding: 5px 25px;
+    margin: 0%;
+}
+
+.content .order-id{
+    font-size: 16pt;
+    padding: 15px 25px;
+}
+
+.order-info .price{
+    text-align: right;
+    font-size: 16pt;
+    padding: 20px 25px;
+}
+
+.shipping-info .order-id{
+    font-size: 14pt;
+    
+}
+
+.shipping-info .border{
+    margin: 0% 2%; 
+    border-bottom: 1px solid lightgray;
+    padding: 0%;
+}
 @media screen and (min-width: 600px) {
     
      .container{ 
-        background-color: #f1f1f1;
         display: flex;
         flex-direction: row;
         width: 1200px;
      }
      .container .leftbar{
-         width: 25%;
+         min-width: 300px;
          display: flex;
          flex-direction: column;
          background-color:white;
