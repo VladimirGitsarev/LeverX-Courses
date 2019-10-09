@@ -1,0 +1,128 @@
+*{
+    box-sizing: border-box;
+}
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    width: 100%;
+    color: #555454;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    margin: 0%;
+    background: linear-gradient(#8da3d3, #dfe9fd);
+}
+
+.container{
+    background-color: lightgray;
+    display: flex;
+    width: 1200px;
+    height: 100%;
+
+}
+.leftbar{
+    flex-direction: column;
+    width: 30%;
+    background-color:white;
+    display: none;
+    justify-content: space-between;
+}
+
+.orders{
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color:white;
+}
+
+.order{
+    border-bottom: 1px solid gray;
+    display: flex;
+    flex-flow: row;
+    align-content: flex-end;
+    padding: 3%;
+    
+}
+.order p{
+    margin: 7% 0%;
+    
+}
+.order .left{
+    margin-right: 15%;
+}
+
+.order .right{
+    text-align: right;
+    width: auto;
+}
+.order .order-id{
+    font-size: 16pt;
+}
+
+.order .date{
+    font-size: 18pt;
+}
+.order .status{
+    color: green;
+}
+
+.order .shipped{
+
+}
+.order:hover{
+    border-bottom: 1px solid gray;
+    background-color: lightblue;
+}
+
+.search{
+    padding: 0% 0%;
+}
+
+.search form input{
+    justify-self: auto;
+    width: 100%;
+    padding: 3px;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+
+header{
+    text-align: center;
+    height: auto;
+    font-size: 12pt;
+}
+
+footer{
+    background-color: #323b53;
+    min-height: 3em;
+}
+
+
+@media screen and (min-width: 600px) {
+    
+     .container{ 
+        background-color: #f1f1f1;
+        display: flex;
+        flex-direction: row;
+        width: 1200px;
+     }
+     .container .leftbar{
+         width: 25%;
+         display: flex;
+         flex-direction: column;
+         background-color:white;
+         height: 100vh;
+     }
+ }
