@@ -20,23 +20,21 @@ body{
     background-color: white;
     flex-direction: row;
     display: flex;
-    width: 1200px;
+    max-width: 1200px;
     height: 100%;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 .leftbar{
+    display: none;
     flex-direction: column;
     background-color:white;
-    display: block;
-
+    border-right: 1px solid white;
 }
 
 .orders{
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color:white;
-    width: 100%;
+    height: 100vh;
 }
 
 .order{
@@ -87,17 +85,48 @@ body{
 }
 
 .info{
+    width: 75%;
     display: flex;
     flex-direction: column;
-    width: 75%;
     height: 100vh;
+}
+
+.info .icon-container{
+    margin-left: 25px;
+    margin-top: 25px;
+    border-bottom: 2px  #6186b1 solid;
+    padding-bottom: 12px;
+}
+
+
+.info div i{
+    border: 1px #6186b1 solid;
+    border-radius: 150px;
+    padding: 10px;
+    font-size: 18px;
     
+}
+
+.chosen-icon{
+    color: white;
+    background-color: #6186b1 ;
+}
+
+.unchosen-icon{
+    color: #6186b1;
+    background-color: transparent;
+}
+
+.info header p{
+    padding: 15px;
+    margin: 0%;
 }
 
 .content{
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100%;  
+    overflow: auto;
 }
 
 header{
@@ -115,35 +144,40 @@ header{
 footer{
     background-color: #323b53;
     min-height: 3em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.info footer{
-    min-height: 3em;
+footer i{
+    color: white;
+    padding-right: 10px;
+    font-size: 120px;
 }
 
 .container{ 
     display: flex;
     flex-direction: block;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
 .order-info{
     display: flex;
     flex-direction: row;
     background-color: #ecf2f5;
-    min-height: 185px;
-    border-bottom: 1px solid lightgray;
+    min-height: 195px;
+    border-bottom: 2px solid lightgray;
     justify-content: space-between;
 }
 
 .shipping-info{
-    min-height: 180px;
+    min-height: 170px;
     border-bottom: 1px solid lightgray;
 }
 
 .content p{
-    padding: 5px 25px;
+    padding: 3px 25px;
     margin: 0%;
 }
 
@@ -152,6 +186,10 @@ footer{
     padding: 15px 25px 0px 25px;
 }
 
+.icon-container{
+    display: inline-block;
+    
+}
 .order-info .price{
     text-align: right;
     font-size: 16pt;
@@ -167,6 +205,9 @@ footer{
     font-size: 14pt;
 }
 
+.shipping-info .left-right{
+    padding: 10px 0px 10px 0px;
+}
 .shipping-info .border{
     margin: 0% 2%; 
     border-bottom: 1px solid lightgray;
@@ -185,11 +226,11 @@ footer{
 }
 
 .shipping-info .left p{
-    padding: 10px 0px 0px 125px;
+    padding: 5px 0px 0px 150px;
 }
 
 .shipping-info .right p{
-    padding: 10px 0px 0px 10px;
+    padding: 5px 0px 0px 10px;
 }
 .shipping-info div{
     display: inline-block;
@@ -202,29 +243,55 @@ footer{
 .order-table{
     height: 100%;
     background-color: #fafafa;
-    padding: 0px 25px 0px 25px;
+    
 }
 
 .order-table .line-items{
     font-size: 14pt;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 25px 10px 25px;
+    display: flex;
+    
 }
 
-table{
-    padding: 25px;
+.order-table table{
     width: 100%;
-    text-align: center;
+    background-color: white;;
     border-collapse: collapse;  
 }
 
-table td{
-    border-top: 2px solid lightgray;
-    border-bottom: 2px solid lightgray;
-    padding: 0px 0px;
+.line-items-table{
+    padding: 0px 15px 0px 15px;
+}
+
+.order-table table td:first-child, th:first-child{
+    text-align: left;
 }
 
 
-@media screen and (min-width: 600px) {
+.order-table table td p:first-child{
+    font-weight: bold;
+}
+
+.order-table table p{
+    padding: 0px 0px;
+}
+
+table td, th{
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    text-align: right;
+    padding: 3px 0px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: lightgray;
+    border-radius: 20px;
+}
+
+@media screen and (min-width: 768px) {
     
      .container{ 
         display: flex;

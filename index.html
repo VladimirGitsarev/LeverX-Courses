@@ -12,12 +12,13 @@
             <div class="leftbar">
                 <header>
                     <p>Orders(10)</p>
-                    <div class="search">
-                        <form>
-                            <input type="text" placeholder="Поиск">
-                        </form>
-                    </div>
                 </header>
+                <div class="search">
+                    <form>
+                        <input type="text" placeholder="Поиск">
+                    </form>
+                 </div>
+
                 <div class="orders">
                     <div class="order">
                         <div class="left">
@@ -64,29 +65,32 @@
                             </div>
                         </div>
                         <div class="order">
-                                <div class="left">
-                                    <p class="order-id">Order 1337</p>
-                                    <p class="customer">Restaurant</p>
-                                    <p class="shipped">Shipped: 26 sept. 2016</p>
-                                </div>
-                                <div class="right">
-                                    <p class="date">22.1.2019</p>
-                                    <p class="status">In time</p>
-                                </div>
+                            <div class="left">
+                                <p class="order-id">Order 1337</p>
+                                <p class="customer">Restaurant</p>
+                                <p class="shipped">Shipped: 26 sept. 2016</p>
+                            </div>
+                            <div class="right">
+                                <p class="date">22.1.2019</p>
+                                <p class="status">In time</p>
+                            </div>
                         </div>
                         <div class="order">
-                                <div class="left">
-                                    <p class="order-id">Order 1337</p>
-                                    <p class="customer">Restaurant</p>
-                                    <p class="shipped">Shipped: 26 sept. 2016</p>
-                                </div>
-                                <div class="right">
-                                    <p class="date">22.1.2019</p>
-                                    <p class="status">In time</p>
-                                </div>
+                            <div class="left">
+                                <p class="order-id">Order 1337</p>
+                                <p class="customer">Restaurant</p>
+                                <p class="shipped">Shipped: 26 sept. 2016</p>
+                            </div>
+                            <div class="right">
+                                <p class="date">22.1.2019</p>
+                                <p class="status">In time</p>
+                            </div>
                         </div>
                 </div>
-                <footer></footer>
+                <footer>
+                    <i class="fa fa-filter"></i>
+                    <i class="fa fa-bars"></i>
+                </footer>
             </div>
             <div class="info">
                 <header><p>Order</p></header>
@@ -97,8 +101,8 @@
                             <br><p class="customer">Customer: Restaurant</p>
                             <p class = "ordered">Ordered: 12 sept. 2016</p>
                             <p class="shipped">Shipped: 26 sept. 2016</p>
-                            <i class="fa fa-truck fa-flip-horizontal fa-2x"></i>
-                            <i class="fa fa-user fa-2x"></i>
+                            <div class="icon-container"><i class="fa fa-truck fa-flip-horizontal chosen-icon"></i></div>
+                            <div class="icon-container"><i class="fa fa-users unchosen-icon"></i></div>
                             </div>
                         <div class="right">
                             <p class="price"> 1213,34</p>
@@ -108,7 +112,7 @@
                     <div class="shipping-info">
                         <p class="address">Shipping Address</p>
                         <p class="border"></p>
-                        <div>
+                        <div class="left-right">
                         <div class="left">
                             <p>Name: </p>
                             <p>Street: </p>
@@ -127,9 +131,10 @@
                     </div>
                     <div class="order-table">
                         <p class="line-items">Line Items</p>
-                        <table id="line-items-table">
+                        <div class="line-items-table">
+                        <table>
                             <tr>
-                                <td>Product</td><td>Unit Price</td><td>Quantity</td><td>Total</td>
+                                <th>Product</td><th>Unit Price</th><th>Quantity</th><th>Total</th>
                             </tr>
                             <tr>
                                 <td><p>Aniseed syrop</p><p>1412</p></td><td>65.43 EUR</td><td>8990</td><td>56034.32 EUR</td>
@@ -137,10 +142,17 @@
                             <tr>
                                 <td><p>Aniseed syrop</p><p>1412</p></td><td>65.43 EUR</td><td>8990</td><td>56034.32 EUR</td>
                             </tr>
+                            <tr>
+                                <td><p>Aniseed syrop</p><p>1412</p></td><td>65.43 EUR</td><td>8990</td><td>56034.32 EUR</td>
+                            </tr>
+                           
                         </table>
+                        </div>
                     </div>
                 </div>    
-                <footer></footer>
+                <footer>
+                    <i class="fa fa-truck fa-envelope"></i>
+                </footer>
             </div>
         </div>
     </body>
