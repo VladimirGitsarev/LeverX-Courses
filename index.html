@@ -16,6 +16,13 @@
                 <div class="search">
                     <form>
                         <input type="text" placeholder="Поиск">
+                        <button>
+                            <i class="fa fa-refresh"></i>
+                        </button>
+                        <button>
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
                     </form>
                  </div>
 
@@ -93,7 +100,10 @@
                 </footer>
             </div>
             <div class="info">
-                <header><p>Order</p></header>
+                <header>
+                    <div class="bars"><i class="fa fa-bars"></i></div>
+                    <div class="head">Order</div>
+                </header>
                 <div class="content">
                     <div class="order-info">
                         <div class="left">
@@ -101,9 +111,9 @@
                             <br><p class="customer">Customer: Restaurant</p>
                             <p class = "ordered">Ordered: 12 sept. 2016</p>
                             <p class="shipped">Shipped: 26 sept. 2016</p>
-                            <div class="icon-container"><i class="fa fa-truck fa-flip-horizontal chosen-icon"></i></div>
-                            <div class="icon-container"><i class="fa fa-users unchosen-icon"></i></div>
-                            </div>
+                            <div class="icon-container chosen-container"><i class="fa fa-truck fa-flip-horizontal chosen-icon"></i></div>
+                            <div class="icon-container unchosen-container"><i class="fa fa-users unchosen-icon"></i></div>
+                        </div>
                         <div class="right">
                             <p class="price"> 1213,34</p>
                             <p class="eur">EUR</p>

@@ -26,9 +26,6 @@ body{
 }
 .leftbar{
     display: none;
-    flex-direction: column;
-    background-color:white;
-    border-right: 1px solid white;
 }
 
 .orders{
@@ -75,31 +72,66 @@ body{
 }
 
 .search{
-    padding: 0% 0%;
+    padding: 3px;
+    width: 100%;
+}
+.search form{
+    display: inline-block;
+    position:relative;
+    width: 280px;
+    
+}
+.search form input{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid lightgrey;
 }
 
-.search form input{
-    justify-self: auto;
-    width: 100%;
-    padding: 3px;
+.search button{
+    background: transparent;
+    border: 0;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    padding: 7px;
+    color: #8f9499;
+}
+
+.search button:last-child{
+    padding-right: 25px;
 }
 
 .info{
-    width: 75%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
+.info header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.info .bars{
+    font-size: 14pt;
+    padding-left: 25px;
+    margin-right: 45%;
+}
+
+.info .head{
+    justify-self: center;
+}
+
 .info .icon-container{
     margin-left: 25px;
     margin-top: 25px;
-    border-bottom: 2px  #6186b1 solid;
-    padding-bottom: 12px;
+    padding-bottom: 6%;
 }
 
 
-.info div i{
+.info .order-info div i{
     border: 1px #6186b1 solid;
     border-radius: 150px;
     padding: 10px;
@@ -117,6 +149,13 @@ body{
     background-color: transparent;
 }
 
+.chosen-container{
+    border-bottom: 2px  #6186b1 solid;
+}
+
+.unchosen .container{
+    border-bottom: 0;
+}
 .info header p{
     padding: 15px;
     margin: 0%;
@@ -167,7 +206,7 @@ footer i{
     flex-direction: row;
     background-color: #ecf2f5;
     min-height: 195px;
-    border-bottom: 2px solid lightgray;
+    border-bottom: 2px solid #d7e1ff;
     justify-content: space-between;
 }
 
@@ -298,11 +337,13 @@ table td, th{
         flex-direction: row;
         width: 1200px;
      }
-     .container .leftbar{
+     .leftbar{
          min-width: 300px;
          display: flex;
          flex-direction: column;
          background-color:white;
          height: 100vh;
+          border-right: 1px solid white;
      }
  }
+ 
