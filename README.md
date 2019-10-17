@@ -1,2 +1,2 @@
-# gitsarevleverx.github.io
+# vladimirgitsarev.github.io
 LeverX Project
