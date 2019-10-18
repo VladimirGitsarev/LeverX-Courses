@@ -56,15 +56,16 @@ body{
     display: flex;
     flex-flow: row;
     align-content: flex-end;
-    padding: 3%;
+    padding: 5px 10px 5px 10px;
     
 }
 .order p{
-    margin: 7% 0%;
+    margin: 8% 0%;
     
 }
 .order .left{
-    margin-right: 10%;
+    margin-right: 25px;
+    width: 55%;
 }
 
 .order .right{
@@ -72,11 +73,16 @@ body{
     width: auto;
 }
 .order .order-id{
-    font-size: 14pt;
+    font-size: 12pt;
+    font-weight: 700;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+
 }
 
 .order .date{
-    font-size: 16pt;
+    font-size: 14pt;
 }
 .order .status{
     color: green;
@@ -140,10 +146,15 @@ body{
     margin-left: 40%;
 }
 
+.info .icons{
+    display: flex;
+    flex-direction: row;
+}
 .info .icon-container{
     margin-left: 25px;
-    margin-top: 25px;
-    padding-bottom: 6%;
+    padding-top: 25px;
+    padding-bottom: 10px;
+    margin-bottom: -2px;
 }
 
 
@@ -222,7 +233,6 @@ footer i{
     display: flex;
     flex-direction: row;
     background-color: #ecf2f5;
-    min-height: 195px;
     border-bottom: 2px solid #d7e1ff;
     justify-content: space-between;
 }
@@ -236,13 +246,10 @@ footer i{
 
 .content .order-id{
     font-size: 16pt;
-    padding: 15px 25px 0px 25px;
+    padding: 15px 25px 15px 25px;
 }
 
-.icon-container{
-    display: inline-block;
-    
-}
+
 .order-info .price{
     text-align: right;
     font-size: 16pt;
@@ -344,7 +351,7 @@ span{
         width: 1200px;
     }
      .leftbar{
-        min-width: 300px;
+        max-width: 300px;
         display: flex;
         flex-direction: column;
         background-color:white;
