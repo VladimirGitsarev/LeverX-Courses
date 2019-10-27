@@ -55,13 +55,16 @@ aside .head{
     height: 100vh;
 }
 
+.pushed-order{
+    background: #ecf2f5
+}
 .order{
     border-bottom: 1px solid lightgray;
     display: flex;
     flex-flow: row;
     align-content: flex-end;
     padding: 5px 10px 5px 10px;
-    
+    cursor: pointer;
 }
 .order p{
     margin: 8% 0%;
@@ -95,12 +98,13 @@ aside .head{
 
 .order:hover{
     border-bottom: 1px solid lightgray;
-    background-color: #ecf2f5;
+    background-color: #eeeeee;
 }
 
 .search{
     width: 300px;
 }
+
 .search form{
     display: inline-block;
     position:relative;
