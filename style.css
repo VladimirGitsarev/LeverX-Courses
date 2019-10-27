@@ -5,7 +5,7 @@ html, body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 10pt;
     width: 100%;
-    color: #555454;
+    color: #474853;
 }
 
 body{
@@ -24,21 +24,21 @@ body{
     height: 100%;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
-.leftbar{
+aside{
     display: none;
 }
 
-.leftbar header{
+aside header{
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.leftbar .arrow{
+aside .arrow{
     padding-left: 15px;
 }
 
-.leftbar .head{
+aside .head{
     margin-left: 30%;
 }
 .shipping-info{
@@ -64,7 +64,7 @@ body{
     
 }
 .order .left{
-    margin-right: 25px;
+    margin-right: 15px;
     width: 55%;
 }
 
@@ -73,8 +73,8 @@ body{
     width: auto;
 }
 .order .order-id{
-    font-size: 12pt;
-    font-weight: 700;
+    font-size: 14pt;
+    
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis; 
@@ -82,7 +82,7 @@ body{
 }
 
 .order .date{
-    font-size: 14pt;
+    font-size: 16pt;
 }
 .order .status{
     color: green;
@@ -95,19 +95,21 @@ body{
 }
 
 .search{
-    padding: 3px;
-    width: 100%;
+    width: 300px;
 }
 .search form{
     display: inline-block;
     position:relative;
-    width: 280px;
+    width: 100%;
+    padding: 3px;
     
 }
 .search form input{
-    width: 100%;
-    padding: 5px;
+    width: 245px;
+    padding: 3px 44px 3px 3px; 
     border: 1px solid lightgrey;
+    font-size: 12pt;
+
 }
 
 .search button{
@@ -116,12 +118,13 @@ body{
     position: absolute;
     top: 0%;
     right: 0%;
-    padding: 7px;
     color: #8f9499;
+    padding-top: 7px;
+    padding-right: 15px;
 }
 
 .search button:last-child{
-    padding-right: 25px;
+    padding-right: 35px;
 }
 
 .info{
@@ -155,6 +158,7 @@ body{
     padding-top: 25px;
     padding-bottom: 10px;
     margin-bottom: -2px;
+    cursor: pointer;
 }
 
 
@@ -222,6 +226,9 @@ footer i{
     font-size: 120px;
 }
 
+aside footer{
+    border-right: 1px solid white;
+}
 .container{ 
     display: flex;
     flex-direction: block;
@@ -262,7 +269,7 @@ footer i{
 }
 
 .order-info .left{
-    min-width: 190px;
+    min-width: 60%;
 }
 .eur{
     padding: 0%;
@@ -350,13 +357,12 @@ span{
         flex-direction: row;
         width: 1200px;
     }
-     .leftbar{
+     aside{
         max-width: 300px;
         display: flex;
         flex-direction: column;
         background-color:white;
         height: 100vh;
-        border-right: 1px solid white;
     }
 
     .info .bars{
@@ -419,7 +425,7 @@ span{
 .shipping-info .left-right{
     padding: 10px 3% 10px 3%;
 }
-.shipping-info .border{
+.border{
     margin: 0% 2%; 
     border-bottom: 1px solid lightgray;
     padding: 0%;
@@ -428,6 +434,61 @@ span{
 .shipping-info .address{
     font-size: 14pt;
     padding: 10px 25px 10px 25px;
+}
+.customer-info{
+    display: none;
+    flex-direction: row;
+    border-bottom: 1px solid lightgray;
+}
+.customer-info .address{
+    font-size: 14pt;
+    padding: 10px 25px 10px 25px;
+}
+
+.customer-info .inner-container{
+   display: flex;
+   padding-bottom: 25px;
+}
+
+.customer-info .right{
+    flex-grow: 1;
+}
+.customer-info .right i{
+    font-size: 75px;
+    color: white;
+}
+
+.customer-info .right .picture{
+    width: 70px;
+    padding: 50px;
+    background-color: #c1cfd3;
+}
+
+.customer-info .left{
+    flex-grow: 1;
+}
+.customer-info .left .header{
+    font-size: 12pt;
+    padding: 15px 25px 5px 25px;
+}
+
+.customer-info .right .header{
+    font-size: 12pt;
+    padding: 15px 25px 15px 25px;
+}
+
+.customer-info .left-left{
+    padding: 0px 0px 15px 75px;
+    text-align: right;
+}
+
+.customer-info .left p{
+    padding: 10px 5px 0px 0px;
+    
+}
+
+.customer-info div div{
+    display: inline-block;
 }
 
 .order-table{
@@ -447,6 +508,7 @@ span{
     width: 100%;
     background-color: white;;
     border-collapse: collapse;  
+    margin-bottom: 15px;
 }
 
 .line-items-table{
