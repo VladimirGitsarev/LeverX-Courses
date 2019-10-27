@@ -7,6 +7,49 @@
     let customerBlock = document.querySelector(".customer-info");
     let shippingBlock = document.querySelector(".shipping-info");
 
+    let input = document.querySelector(".search-input");
+    input.addEventListener('input', inputEvent);
+
+    let orders = document.querySelector('.orders');
+    let ordersList = orders.childNodes;
+
+    let word = 'Ya sosal menya ebali';
+        alert(word.indexOf('ebali') )
+
+function inputEvent(){
+    for (i = 0; i < ordersList.length; i++){
+      if (ordersList[i].classList == 'order'){
+           ordersList[i].classList.add('hidden');
+        }
+    }
+
+    for (i = 0; i < ordersList.length; i++){
+        let ordersListNodes = ordersList[i].childNodes;
+        if (ordersList[i].classList == 'order hidden'){
+            for(j = 0; j < ordersListNodes.length; j++){
+                let ordersListInnerNodes = ordersListNodes[j].childNodes;
+                if (ordersListNodes[j].classList == 'left' || ordersListNodes[j].classList == 'right')
+                {
+                    for(k = 0; k < ordersListInnerNodes.length; k++)
+                    {
+                        if(ordersListInnerNodes[k].textContent.toLocaleLowerCase().indexOf(input.value.toLocaleLowerCase()) >= 0){
+                            ordersList[i].classList.remove('hidden');
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (input.value.length == 0){
+        for (i = 0; i < ordersList.length; i++){
+            if (ordersList[i].classList == 'order hidden'){
+                ordersList[i].classList.remove('hidden');
+            }
+        }
+    }
+}
+
 function shippingIconClick(){
     shippingIcon.classList.add("chosen-icon");
     shippingIcon.classList.remove("unchosen-icon");

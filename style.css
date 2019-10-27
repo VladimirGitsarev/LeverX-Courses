@@ -16,6 +16,10 @@ body{
     background: linear-gradient(#8da3d3, #dfe9fd);
 }
 
+.hidden{
+    display: none !important;
+}
+
 .container{
     background-color: white;
     flex-direction: row;
