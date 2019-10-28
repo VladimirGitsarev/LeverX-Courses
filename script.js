@@ -245,7 +245,55 @@ var Orders = [
     
     let orders = document.querySelector('.orders');
     let ordersList = orders.childNodes;
+
+    let productNameButton = document.querySelector('#product-name');
+    let productUnitButton = document.querySelector('#product-unit-price');
+    let productTotalButton = document.querySelector('#product-total-price');
+    productNameButton.addEventListener('click', productSort);
+    productUnitButton.addEventListener('click', productSort);
+    productTotalButton.addEventListener('click', productSort);
+
+    let currentOrder = 0;
+
+function productSort(){
+    clearTable()
+    productsArr = Orders[currentOrder-1].products;
+    switch(this.id){
+        case 'product-name':
+            sortByName(productsArr);
+            break;
+        case 'product-unit-price':
+            sortByUnitPrice(productsArr);
+            break;
+        case 'product-total-price':
+            sortByTotalPrice(productsArr);
+            break;
+    }
+    //sortByName(productsArr);
+    productsArr.forEach(product =>{
+        let tableBlock = document.createElement('tr');
+        tableBlock.innerHTML = `<td><p>${product.name}</p>
+                                <p>${product.id}</p></td>
+                                <td><span>${product.price}</span> ${product.currency}</td>
+                                <td>${product.quantity}</td>
+                                <td><span>${product.totalPrice}</span> ${product.currency}</td>`
+        table.appendChild(tableBlock);
+
+    })
+}
     
+function sortByName(arr) {
+    arr.sort((a, b) => a.name > b.name ? 1 : -1);
+}
+
+function sortByUnitPrice(arr) {
+    arr.sort((a, b) => +a.price < +b.price ? 1 : -1);
+}
+
+function sortByTotalPrice(arr) {
+    arr.sort((a, b) => +a.totalPrice < +b.totalPrice ? 1 : -1);
+}
+
 function fullfillOrders(){
     Orders.forEach((order) => {
         let orderBlock = document.createElement('div');
@@ -293,7 +341,7 @@ function fullfillContent(child){
         if (('Order '+ order.id) === child)
         {
             let content = document.querySelector('.content');
-
+            currentOrder = order.id;
             //Order info content
             let orderValue = content.querySelector('.order-id');
             let priceValue = content.querySelector('.price');
@@ -338,11 +386,7 @@ function fullfillContent(child){
             customerMailValue.textContent = order.CustomerInfo.email;
 
             //Table content
-            table = document.querySelector('#product-table');
-            tableBlocks = table.querySelectorAll('tr');
-            for (i = 1; i < tableBlocks.length; i++){
-                tableBlocks[i].remove();
-            }
+            clearTable();
             order.products.forEach(product =>{
                 let tableBlock = document.createElement('tr');
                 tableBlock.innerHTML = `<td><p>${product.name}</p>
@@ -357,6 +401,14 @@ function fullfillContent(child){
 
         }
     })
+}
+
+function clearTable(){
+    table = document.querySelector('#product-table');
+    tableBlocks = table.querySelectorAll('tr');
+        for (i = 1; i < tableBlocks.length; i++){ 
+                tableBlocks[i].remove();
+            }
 }
 
 function tableInputEvent(){
