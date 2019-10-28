@@ -26,74 +26,7 @@
                         
                     </form>
                  </div>
-
                 <div class="orders">
-                    <div class="order">
-                        <div class="left">
-                            <p class="order-id">Order 456789034567890456784</p>
-                            <p class="customer">Restaurant</p>
-                            <p class="shipped">Shipped: 26 sept. 2016</p>
-                        </div>
-                        <div class="right">
-                            <p class="date">22.11.2019</p>
-                            <p class="status">In time</p>
-                        </div>
-                    </div>
-                    <div class="order">
-                        <div class="left">
-                            <p class="order-id">Order 133734567876543563344</p>
-                            <p class="customer">Park</p>
-                            <p class="shipped">Shipped: 21 sept. 2017 </p>
-                        </div>
-                        <div class="right">
-                            <p class="date">12.11.2019</p>
-                            <p class="status">In time</p>
-                        </div>
-                    </div>
-                    <div class="order">
-                            <div class="left">
-                                <p class="order-id">Order 3234</p>
-                                <p class="customer">Cinema</p>
-                                <p class="shipped">Shipped: 2 oct. 2018</p>
-                            </div>
-                            <div class="right">
-                                <p class="date">01.02.2019</p>
-                                <p class="status">In time</p>
-                            </div>
-                        </div>
-                        <div class="order">
-                            <div class="left">
-                                <p class="order-id">Order 2107</p>
-                                <p class="customer">Restaurant</p>
-                                <p class="shipped">Shipped: 26 sept. 2016</p>
-                            </div>
-                            <div class="right">
-                                <p class="date">22.11.2019</p>
-                                <p class="status">In time</p>
-                            </div>
-                        </div>
-                        <div class="order">
-                            <div class="left">
-                                <p class="order-id">Order 1703</p>
-                                <p class="customer">Park</p>
-                                <p class="shipped">Shipped: 26 sept. 2016</p>
-                            </div>
-                            <div class="right">
-                                <p class="date">22.11.2019</p>
-                                <p class="status">In time</p>
-                            </div>
-                        </div>
-                        <div class="order">
-                            <div class="left">
-                                <p class="order-id">Order 1448</p>
-                                <p class="customer">Cinema</p>
-                                <p class="shipped">Shipped: 26 sept. 2016</p>
-                            </div>
-                            <div class="right">
-                                <p class="date">22.11.2019</p>
-                                <p class="status">In time</p>
-                            </div>
-                        </div>
                 </div>
                 <footer>
                     <i class="fa fa-filter"></i>
@@ -134,11 +67,11 @@
                             <p>Country: </p>
                         </div>
                         <div class="right info-text">
-                            <p>ExcellentParcel</p>
-                            <p>Tottenham Court Road</p>
-                            <p>N170AA London</p>
-                            <p>London</p>
-                            <p>United Kingdom</p>
+                            <p class="ship-name">ExcellentParcel</p>
+                            <p class="ship-street">Tottenham Court Road</p>
+                            <p class="ship-zip">N170AA London</p>
+                            <p class="ship-region">London</p>
+                            <p class="ship-country">United Kingdom</p>
                         </div>
                         </div>
                     </div>
@@ -176,15 +109,17 @@
                             <p class="header">Details</p>
                             <div class="left-left">
                                     <p>Name: </p>
-                                    <p>Employee ID: </p>
-                                    <p>Job title: </p> 
-                                    <p>Phone: </p> 
+                                    <p>Lastname: </p>
+                                    <p>Address: </p> 
+                                    <p>Phone: </p>
+                                    <p>Email: </p> 
                                 </div>
                                 <div class="left-right info-text">
-                                   <p>Jack Smith</p>
-                                    <p>3456</p>
-                                    <p>Developer</p>
-                                    <p>345678909876</p>
+                                   <p class="customer-name">Jack</p>
+                                    <p class="customer-lastname">Smith</p>
+                                    <p class="customer-address">Obere Str. 57</p>
+                                    <p class="customer-phone">345678909876</p>
+                                    <p class="customer-email">vladimir.gitsarev@mail.ru</p>
                                 </div>
                         </div>
                         <div class="right">
@@ -194,11 +129,20 @@
                         </div>
                     </div>
                     <div class="order-table">
+                        <div class="line-items-container">
                         <p class="line-items">Line Items</p>
+                        <form>
+                            <input class="line-input" type="text" placeholder="Поиск">
+                            <button>
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                        </div>
                         <div class="line-items-table">
-                        <table>
+                        <table id="product-table">
+                            <tbody id=table-body>
                             <tr>
-                                <th>Product</td><th>Unit Price</th><th>Quantity</th><th>Total</th>
+                                <th>Product <i class="fa fa-exchange product-button"></i></td><th>Unit Price <i class="fa fa-sort"></i></th><th>Quantity</th><th><i class="fa fa-sort"></i>Total</th>
                             </tr>
                             <tr>
                                 <td><p>Aniseed syrop</p><p>1412</p></td><td><span>65.43</span> EUR</td><td>8990</td><td><span>56034.32</span> EUR</td>
@@ -212,6 +156,7 @@
                             <tr>
                                 <td><p>Aniseed syrop</p><p>1412</p></td><td><span>65.43</span> EUR</td><td>8990</td><td><span>56034.32</span> EUR</td>
                             </tr>
+                            </tbody>
                         </table>
                         </div>
                     </div>

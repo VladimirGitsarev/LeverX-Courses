@@ -402,20 +402,19 @@ span{
     .shipping-info-alt{
         display: none;
     }
+   
     .shipping-info{
         display: block;
-    }
-    .shipping-info{
-        min-height: 170px;
+        min-height: 210px;
         border-bottom: 1px solid lightgray;
     }
 
     .shipping-info .left p{
-        padding: 5px 0px 0px 150px;
+        padding: 10px 0px 0px 150px;
     }
     
     .shipping-info .right p{
-        padding: 5px 0px 0px 10px;
+        padding: 10px 0px 0px 10px;
     }
     .shipping-info div{
         display: inline-block;
@@ -431,8 +430,9 @@ span{
 }
 
 .shipping-info .left-right{
-    padding: 10px 3% 10px 3%;
+    padding: 10px 3% 15px 3%;
 }
+
 .border{
     margin: 0% 2%; 
     border-bottom: 1px solid lightgray;
@@ -509,9 +509,30 @@ span{
     font-size: 14pt;
     padding: 10px 25px 10px 25px;
     display: flex;
+    flex-grow: 1;
     
 }
 
+.order-table .line-items-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: right;
+}
+
+.order-table .line-input{
+    flex-grow: 1;
+    padding: 3px;
+    border: 1px solid lightgrey;
+    font-size: 12pt;
+}
+
+.order-table form button{
+    background: transparent;
+    border: 0;
+    margin-right: 25px;
+    color: #8f9499;
+}
 .order-table table{
     width: 100%;
     background-color: white;;
@@ -539,11 +560,25 @@ span{
 table td, th{
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
+    text-align: center;
+    padding: 3px 0px;   
+}
+
+table td:last-child, th:last-child{
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
     text-align: right;
     padding: 3px 0px;
 }
 
 table th{
     background-color: #f1f1f1;
+    padding: 7px 0px;    
+}
+
+table .fa{
+    padding: 0px 7px;
+    font-size: 14px;
+    cursor: pointer;
 }
 }
