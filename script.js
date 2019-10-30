@@ -238,12 +238,18 @@ var Orders = [
     let shippingBlock = document.querySelector(".shipping-info");
 
     let input = document.querySelector(".search-input");
-    input.addEventListener('input', inputEvent);
+	//input.addEventListener('input', inputEvent);
+	
+	let searchButton = document.querySelector(".fa-search");
+	searchButton.addEventListener('click', searchEvent);
+
+	let refreshButton = document.querySelector('.fa-refresh');
+	refreshButton.addEventListener('click', fullfillOrders);
 
     let tableInput = document.querySelector('.line-input');
     tableInput.addEventListener('input', tableInputEvent);
     
-    let orders = document.querySelector('.orders');
+    let orders = document.querySelector('.orders'); //Sidebar with orders
     let ordersList = orders.childNodes;
 
     let productNameButton = document.querySelector('#product-name');
@@ -253,7 +259,10 @@ var Orders = [
     productUnitButton.addEventListener('click', productSort);
     productTotalButton.addEventListener('click', productSort);
 
-    let currentOrder = 0;
+	let currentOrder = 0;
+	let nameSort = -1;
+	let unitSort = -1;
+	let totalSort = -1;
 
 function productSort(){
     clearTable()
@@ -269,7 +278,6 @@ function productSort(){
             sortByTotalPrice(productsArr);
             break;
     }
-    //sortByName(productsArr);
     productsArr.forEach(product =>{
         let tableBlock = document.createElement('tr');
         tableBlock.innerHTML = `<td><p>${product.name}</p>
@@ -278,23 +286,111 @@ function productSort(){
                                 <td>${product.quantity}</td>
                                 <td><span>${product.totalPrice}</span> ${product.currency}</td>`
         table.appendChild(tableBlock);
-
     })
 }
-    
+
 function sortByName(arr) {
-    arr.sort((a, b) => a.name > b.name ? 1 : -1);
+	nameSort++;
+	switch(nameSort){
+		case 0: arr.sort((a, b) => a.name > b.name ? 1 : -1); break;
+		case 1: arr.sort((a, b) => a.name < b.name ? 1 : -1); break;
+		case 2: {arr.sort((a, b) => a.id > b.id ? 1 : -1); nameSort = -1}; break;
+	}
+	if (nameSort == 2){
+		
+	}
 }
 
 function sortByUnitPrice(arr) {
-    arr.sort((a, b) => +a.price < +b.price ? 1 : -1);
+	unitSort++;
+	switch(unitSort){
+	case 0: arr.sort((a, b) => +a.price < +b.price ? 1 : -1); break;
+	case 1: arr.sort((a, b) => +a.price > +b.price ? 1 : -1); break;
+	case 2: {arr.sort((a, b) => a.id > b.id ? 1 : -1); unitSort = -1}; break;
+	}
 }
 
 function sortByTotalPrice(arr) {
-    arr.sort((a, b) => +a.totalPrice < +b.totalPrice ? 1 : -1);
+	totalSort++;
+	switch(totalSort){
+		case 0: arr.sort((a, b) => +a.totalPrice < +b.totalPrice ? 1 : -1); break;
+		case 1: arr.sort((a, b) => +a.totalPrice > +b.totalPrice ? 1 : -1); break;
+		case 2: {arr.sort((a, b) => a.id > b.id ? 1 : -1); totalSort = -1}; break;
+	}
+}
+
+function defaultSort(arr){
+	arr.sort((a, b) => a.id > b.id ? 1 : -1);
+}
+
+function unique(arr) {
+	let result = [];
+  
+	for (let str of arr) {
+	  if (!result.includes(str)) {
+		result.push(str);
+	  }
+	}
+  
+	return result;
+  }
+
+  function unique(arr) {
+	let result = [];
+  
+	for (let str of arr) {
+	  if (!result.includes(str)) {
+		result.push(str);
+	  }
+	}
+  
+	return result;
+  }
+
+function searchEvent(){
+	while(orders.firstChild){
+		orders.removeChild(orders.firstChild);
+	};
+
+	let list = [];
+	Orders.forEach(order => {
+		for (let key in order.OrderInfo){
+			if (order.OrderInfo[key].toLocaleLowerCase().indexOf(input.value.toLocaleLowerCase()) >= 0){
+				if (!list.includes(order.id)){
+					list.push(order.id);
+				}
+			}
+		};
+	})
+
+	Orders.forEach(order => {
+		if (list.includes(order.id)){
+			let orderBlock = document.createElement('div');
+        orderBlock.addEventListener('click', orderBlockClick);
+        let leftBlock = document.createElement('div');
+        let rightBlock = document.createElement('div');
+        leftBlock.classList.add('left');
+        rightBlock.classList.add('right');
+        leftBlock.innerHTML = `<p class="order-id">Order ${order.id}</p>
+                               <p class=customer> ${order.OrderInfo.customer}</p>
+                               <p class=shipped> Shipped: ${order.OrderInfo.shippedAt}</p>`
+        rightBlock.innerHTML = `<p class="date">${order.OrderInfo.createdAt}</p>
+                                <p class=status>${order.OrderInfo.status}</p>`
+        orderBlock.appendChild(leftBlock);
+        orderBlock.appendChild(rightBlock);
+        orderBlock.classList.add('order');
+        orders.appendChild(orderBlock)
+        statusColor(orderBlock.querySelector('.status'));
+		}
+	})
+	fullfillContent('Order ' + Orders[+list[0]-1].id); //Fill the page with first order info
+	orders.childNodes[0].classList.add('js-pushed-order'); //Make the first block pushed
 }
 
 function fullfillOrders(){
+	while(orders.firstChild){
+		orders.removeChild(orders.firstChild);
+	};
     Orders.forEach((order) => {
         let orderBlock = document.createElement('div');
         orderBlock.addEventListener('click', orderBlockClick);
@@ -312,10 +408,12 @@ function fullfillOrders(){
         orderBlock.classList.add('order');
         orders.appendChild(orderBlock)
         statusColor(orderBlock.querySelector('.status'));
-
-    })
+	})
+	fullfillContent('Order ' + Orders[0].id); //Fill the page with first order info
+	orders.childNodes[0].classList.add('js-pushed-order'); //Make the first block pushed
 }
 
+//Choose status color
 function statusColor(status){
     switch (status.textContent){
         case 'Accepted': status.style.color = 'green';
@@ -327,13 +425,19 @@ function statusColor(status){
 }
 
 function orderBlockClick(){
+	nameSort = -1;
+	unitSort = -1;
+	totalSort = -1;
+	ordersArr = Orders[currentOrder-1].products;
+	defaultSort(ordersArr);
     for (i = 0; i < ordersList.length; i++){
-        if (ordersList[i].classList == 'order pushed-order'){
-             ordersList[i].classList.remove('pushed-order');
+        if (ordersList[i].classList == 'order js-pushed-order'){
+             ordersList[i].classList.remove('js-pushed-order');
           }
       }
-    this.classList.add('pushed-order');          
-    fullfillContent(this.childNodes[0].childNodes[0].textContent);
+    this.classList.add('js-pushed-order');          
+	fullfillContent(this.childNodes[0].childNodes[0].textContent); //Fill the page content choosing order by the name 
+	
 }
 
 function fullfillContent(child){
@@ -341,7 +445,8 @@ function fullfillContent(child){
         if (('Order '+ order.id) === child)
         {
             let content = document.querySelector('.content');
-            currentOrder = order.id;
+			currentOrder = order.id;
+			
             //Order info content
             let orderValue = content.querySelector('.order-id');
             let priceValue = content.querySelector('.price');
@@ -444,7 +549,6 @@ function tableInputEvent(){
         }
     }
 }
-
 
 function inputEvent(){
 

@@ -55,7 +55,7 @@ aside .head{
     height: 100vh;
 }
 
-.pushed-order{
+.js-pushed-order{
     background: #ecf2f5
 }
 .order{
@@ -120,7 +120,7 @@ aside .head{
 
 }
 
-.search button{
+.search i{
     background: transparent;
     border: 0;
     position: absolute;
@@ -129,10 +129,11 @@ aside .head{
     color: #8f9499;
     padding-top: 7px;
     padding-right: 15px;
+    cursor: pointer;
 }
 
-.search button:last-child{
-    padding-right: 35px;
+.search i:last-child{
+    margin-right: 20px;
 }
 
 .info{
