@@ -146,7 +146,7 @@ var Orders = [
 		]
     },
     {
-		id: "3",
+		id: "4",
 		OrderInfo: {
 			createdAt	: "07.08.2000",
 			customer	: "Lenya Delivery",
@@ -234,20 +234,23 @@ var Orders = [
     let customerIcon = document.querySelector(".fa-users");
     shippingContainer.addEventListener("click", shippingIconClick);
     customerContainer.addEventListener("click", customerIconClick);
-    let customerBlock = document.querySelector(".customer-info");
-    let shippingBlock = document.querySelector(".shipping-info");
+    let customerBlock = document.querySelector(".customer-info-container");
+    let shippingBlock = document.querySelector(".shipping-info-container");
+	
+	let head = document.querySelector('.js-orders');
+	let lineItems = document.querySelector('.line-items');
 
     let input = document.querySelector(".search-input");
-	//input.addEventListener('input', inputEvent);
+	let tableInput = document.querySelector('.line-input');
 	
-	let searchButton = document.querySelector(".fa-search");
+	let searchButton = document.querySelector(".js-search-button");
 	searchButton.addEventListener('click', searchEvent);
+
+	let tableSearchButton = document.querySelector('.js-table-search-button');
+	tableSearchButton.addEventListener('click', searchTableEvent);
 
 	let refreshButton = document.querySelector('.fa-refresh');
 	refreshButton.addEventListener('click', fullfillOrders);
-
-    let tableInput = document.querySelector('.line-input');
-    tableInput.addEventListener('input', tableInputEvent);
     
     let orders = document.querySelector('.orders'); //Sidebar with orders
     let ordersList = orders.childNodes;
@@ -263,21 +266,28 @@ var Orders = [
 	let nameSort = -1;
 	let unitSort = -1;
 	let totalSort = -1;
+	let isSearching = false;
 
 function productSort(){
-    clearTable()
-    productsArr = Orders[currentOrder-1].products;
+	if (isSearching == false){
+		productsArr = Orders[currentOrder].products;
+	}
+	else{
+		productsArr = searchTableEvent();
+	}
+	clearTable();
     switch(this.id){
-        case 'product-name':
-            sortByName(productsArr);
-            break;
-        case 'product-unit-price':
-            sortByUnitPrice(productsArr);
-            break;
-        case 'product-total-price':
-            sortByTotalPrice(productsArr);
-            break;
-    }
+    	case 'product-name':
+        	sortByName(productsArr, this);
+        	break;
+    	case 'product-unit-price':
+        	sortByUnitPrice(productsArr, this);
+        	break;
+    	case 'product-total-price':
+        	sortByTotalPrice(productsArr, this);
+	    	break;
+	}
+	
     productsArr.forEach(product =>{
         let tableBlock = document.createElement('tr');
         tableBlock.innerHTML = `<td><p>${product.name}</p>
@@ -286,36 +296,48 @@ function productSort(){
                                 <td>${product.quantity}</td>
                                 <td><span>${product.totalPrice}</span> ${product.currency}</td>`
         table.appendChild(tableBlock);
-    })
+	})
+	lineItems.textContent = 'Line Items(' + productsArr.length + ')';
 }
 
-function sortByName(arr) {
+function clearClasses(){
+	classes = ['fa-sort-up', 'fa-sort-down', 'fa-sort']
+	buttons = [productNameButton, productUnitButton, productTotalButton]
+	buttons.forEach(b=>{
+		classes.forEach(c=>{
+			b.classList.remove(c);
+		})
+		b.classList.add('fa-sort');
+	})
+}
+
+function sortByName(arr, button){
 	nameSort++;
+	clearClasses();
 	switch(nameSort){
-		case 0: arr.sort((a, b) => a.name > b.name ? 1 : -1); break;
-		case 1: arr.sort((a, b) => a.name < b.name ? 1 : -1); break;
-		case 2: {arr.sort((a, b) => a.id > b.id ? 1 : -1); nameSort = -1}; break;
-	}
-	if (nameSort == 2){
-		
+		case 0: {arr.sort((a, b) => a.name > b.name ? 1 : -1); button.classList.add('fa-sort-down'); break;}
+		case 1: {arr.sort((a, b) => a.name < b.name ? 1 : -1); button.classList.add('fa-sort-up'); break;}
+		case 2: {arr.sort((a, b) => a.id > b.id ? 1 : -1); button.classList.add('fa-sort'); nameSort = -1; break;}
 	}
 }
 
-function sortByUnitPrice(arr) {
+function sortByUnitPrice(arr, button) {
 	unitSort++;
+	clearClasses();
 	switch(unitSort){
-	case 0: arr.sort((a, b) => +a.price < +b.price ? 1 : -1); break;
-	case 1: arr.sort((a, b) => +a.price > +b.price ? 1 : -1); break;
-	case 2: {arr.sort((a, b) => a.id > b.id ? 1 : -1); unitSort = -1}; break;
+	case 0: {arr.sort((a, b) => +a.price < +b.price ? 1 : -1); button.classList.add('fa-sort-down'); break;}
+	case 1: {arr.sort((a, b) => +a.price > +b.price ? 1 : -1); button.classList.add('fa-sort-up'); break;}
+	case 2: {arr.sort((a, b) => a.id > b.id ? 1 : -1); button.classList.add('fa-sort'); unitSort = -1; break;}
 	}
 }
 
-function sortByTotalPrice(arr) {
+function sortByTotalPrice(arr, button) {
 	totalSort++;
+	clearClasses();
 	switch(totalSort){
-		case 0: arr.sort((a, b) => +a.totalPrice < +b.totalPrice ? 1 : -1); break;
-		case 1: arr.sort((a, b) => +a.totalPrice > +b.totalPrice ? 1 : -1); break;
-		case 2: {arr.sort((a, b) => a.id > b.id ? 1 : -1); totalSort = -1}; break;
+		case 0: {arr.sort((a, b) => +a.totalPrice < +b.totalPrice ? 1 : -1); button.classList.add('fa-sort-down'); break;}
+		case 1: {arr.sort((a, b) => +a.totalPrice > +b.totalPrice ? 1 : -1); button.classList.add('fa-sort-up'); break;}
+		case 2: {arr.sort((a, b) => a.id > b.id ? 1 : -1); totalSort = -1; button.classList.add('fa-sort'); break;}
 	}
 }
 
@@ -323,35 +345,53 @@ function defaultSort(arr){
 	arr.sort((a, b) => a.id > b.id ? 1 : -1);
 }
 
-function unique(arr) {
-	let result = [];
-  
-	for (let str of arr) {
-	  if (!result.includes(str)) {
-		result.push(str);
-	  }
-	}
-  
-	return result;
-  }
+function fillSearchedTable(productsList){
+	Orders[currentOrder].products.forEach(product =>{
+		if (productsList.includes(product.id)){
+			
+			let tableBlock = document.createElement('tr');
+                tableBlock.innerHTML = `<td><p>${product.name}</p>
+                                        <p>${product.id}</p></td>
+                                        <td><span>${product.price}</span> ${product.currency}</td>
+                                        <td>${product.quantity}</td>
+                                        <td><span>${product.totalPrice}</span> ${product.currency}</td>`
+                table.appendChild(tableBlock);
+		}
+	})
+}
 
-  function unique(arr) {
-	let result = [];
-  
-	for (let str of arr) {
-	  if (!result.includes(str)) {
-		result.push(str);
-	  }
-	}
-  
-	return result;
-  }
+function searchTableEvent(){
+	isSearching = true;
+	clearTable()
+	let productsList = [];
+	Orders[currentOrder].products.forEach(product=>{
+		for (let key in product){
+			if (product[key].toLocaleLowerCase().indexOf(tableInput.value.toLocaleLowerCase()) >= 0){
+				if (!productsList.includes(product.id)){
+					productsList.push(product.id);
+				}
+			}
+		}
+	})
+
+	let searchedProducts = []
+	Orders[currentOrder].products.forEach(product =>{
+		if (productsList.includes(product.id)){
+			searchedProducts.push(product);
+		}
+	})
+	fillSearchedTable(productsList);
+	lineItems.textContent = 'Line Items(' + productsList.length + ')';
+	return searchedProducts;
+}
 
 function searchEvent(){
+	//Clear orders block
 	while(orders.firstChild){
 		orders.removeChild(orders.firstChild);
-	};
+	}; 
 
+	//Find orders id 
 	let list = [];
 	Orders.forEach(order => {
 		for (let key in order.OrderInfo){
@@ -363,6 +403,7 @@ function searchEvent(){
 		};
 	})
 
+	//Show found orders using ids
 	Orders.forEach(order => {
 		if (list.includes(order.id)){
 			let orderBlock = document.createElement('div');
@@ -383,11 +424,14 @@ function searchEvent(){
         statusColor(orderBlock.querySelector('.status'));
 		}
 	})
+	head.textContent = 'Orders(' + list.length + ')';
 	fullfillContent('Order ' + Orders[+list[0]-1].id); //Fill the page with first order info
 	orders.childNodes[0].classList.add('js-pushed-order'); //Make the first block pushed
 }
 
 function fullfillOrders(){
+	head.textContent = 'Orders(' + Orders.length + ')';
+	lineItems.textContent = 'Line Items(' + Orders[0].products.length + ')';
 	while(orders.firstChild){
 		orders.removeChild(orders.firstChild);
 	};
@@ -425,10 +469,12 @@ function statusColor(status){
 }
 
 function orderBlockClick(){
+	isSearching = false;
 	nameSort = -1;
 	unitSort = -1;
 	totalSort = -1;
-	ordersArr = Orders[currentOrder-1].products;
+	ordersArr = Orders[currentOrder].products;
+	clearClasses();
 	defaultSort(ordersArr);
     for (i = 0; i < ordersList.length; i++){
         if (ordersList[i].classList == 'order js-pushed-order'){
@@ -437,15 +483,14 @@ function orderBlockClick(){
       }
     this.classList.add('js-pushed-order');          
 	fullfillContent(this.childNodes[0].childNodes[0].textContent); //Fill the page content choosing order by the name 
-	
 }
 
 function fullfillContent(child){
-    Orders.forEach((order) => {
+    Orders.forEach(function(order, i){
         if (('Order '+ order.id) === child)
         {
             let content = document.querySelector('.content');
-			currentOrder = order.id;
+			currentOrder = i;
 			
             //Order info content
             let orderValue = content.querySelector('.order-id');
@@ -490,6 +535,8 @@ function fullfillContent(child){
             customerPhoneValue.textContent = order.CustomerInfo.phone;
             customerMailValue.textContent = order.CustomerInfo.email;
 
+			lineItems.textContent = 'Line Items(' + Orders[currentOrder].products.length + ')';
+			
             //Table content
             clearTable();
             order.products.forEach(product =>{
@@ -500,10 +547,7 @@ function fullfillContent(child){
                                         <td>${product.quantity}</td>
                                         <td><span>${product.totalPrice}</span> ${product.currency}</td>`
                 table.appendChild(tableBlock);
-
             })
-
-
         }
     })
 }
@@ -514,75 +558,6 @@ function clearTable(){
         for (i = 1; i < tableBlocks.length; i++){ 
                 tableBlocks[i].remove();
             }
-}
-
-function tableInputEvent(){
-    tableBlocks = document.querySelectorAll('tr');
-
-    for (i = 1; i < tableBlocks.length; i++){
-        if (tableBlocks[i].tagName == 'TR'){
-             tableBlocks[i].classList.add('hidden');
-          }
-    }
-
-    for (i = 0; i < tableBlocks.length; i++){
-        let tableBlocksNodes = tableBlocks[i].childNodes;
-        for (j = 0; j < tableBlocksNodes.length; j++){
-            if(tableBlocksNodes[j].tagName == 'TD'){
-                let tableBlocksInnerNodes = tableBlocksNodes[j].childNodes;
-                for (k = 0; k < tableBlocksInnerNodes.length; k++){
-                    if(tableBlocksInnerNodes[k].tagName == 'P' || tableBlocksInnerNodes[k].tagName == 'SPAN'){
-                        if(tableBlocksInnerNodes[k].textContent.toLocaleLowerCase().indexOf(tableInput.value.toLocaleLowerCase()) >= 0){
-                            tableBlocks[i].classList.remove('hidden');
-                        }
-                      }
-                    }
-                }
-            }
-        }
-
-        if(tableInput.value.length == 0){
-        for (i = 1; i < tableBlocks.length; i++){
-            if (tableBlocks[i].tagName == 'TR'){
-                 tableBlocks[i].classList.remove('hidden');
-              }
-        }
-    }
-}
-
-function inputEvent(){
-
-    for (i = 0; i < ordersList.length; i++){
-      if (ordersList[i].classList == 'order'){
-           ordersList[i].classList.add('hidden');
-        }
-    }
-
-    for (i = 0; i < ordersList.length; i++){
-        let ordersListNodes = ordersList[i].childNodes;
-        if (ordersList[i].classList == 'order hidden'){
-            for(j = 0; j < ordersListNodes.length; j++){
-                let ordersListInnerNodes = ordersListNodes[j].childNodes;
-                if (ordersListNodes[j].classList == 'left' || ordersListNodes[j].classList == 'right')
-                {
-                    for(k = 0; k < ordersListInnerNodes.length; k++)
-                    {
-                        if(ordersListInnerNodes[k].textContent.toLocaleLowerCase().indexOf(input.value.toLocaleLowerCase()) >= 0){
-                            ordersList[i].classList.remove('hidden');
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    if (input.value.length == 0){
-        for (i = 0; i < ordersList.length; i++){
-            if (ordersList[i].classList == 'order hidden'){
-                ordersList[i].classList.remove('hidden');
-            }
-        }
-    }
 }
 
 function shippingIconClick(){
@@ -612,3 +587,4 @@ function customerIconClick(){
 }
 
 fullfillOrders()
+

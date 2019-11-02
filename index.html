@@ -9,16 +9,16 @@
     </head>
     <body>
         <div class="container">
-            <aside >
+            <aside>
                 <header>
                     <div class="arrow"><i class="fa fa-chevron-left"></i></div>
-                    <div class="head"><p>Orders(10)</p></div>
+                    <div class="head"><p class="js-orders">Orders</p></div>
                 </header>
                 <div class="search">
                     <form>
                         <input class="search-input" type="text" placeholder="Поиск">
                             <i class="fa fa-refresh"></i>
-                            <i class="fa fa-search"></i>
+                            <i class="fa fa-search js-search-button"></i>
                     </form>
                  </div>
                 <div class="orders">
@@ -50,7 +50,8 @@
                             <p class="eur">EUR</p>
                         </div>
                     </div>
-                    <div class="shipping-info">
+                    <div class="shipping-info-container">
+                        <div class="shipping-info">
                         <p class="address">Shipping Address</p>
                         <p class="border"></p>
                         <div class="left-right">
@@ -69,7 +70,7 @@
                             <p class="ship-country">United Kingdom</p>
                         </div>
                         </div>
-                    </div>
+                        </div>
                     <div class="shipping-info-alt">
                         <p class="address">Shipping Address</p>
                         <p class="border"></p>
@@ -96,6 +97,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="customer-info-container">
                     <div class="customer-info">
                         <p class="address">Processor information</p>
                         <p class="border"></p>
@@ -123,37 +126,25 @@
                         </div>
                         </div>
                     </div>
+                    <div class="customer-info-alt">
+                        <p>Customer info alt</p>
+                    </div>
+                </div>
                     <div class="order-table">
                         <div class="line-items-container">
                         <p class="line-items">Line Items</p>
                         <form>
                             <input class="line-input" type="text" placeholder="Поиск">
-                            <button>
-                                <i class="fa fa-search"></i>
-                            </button>
+                            <i class="fa fa-search js-table-search-button"></i>
                         </form>
                         </div>
-                        <div class="line-items-table">
                         <table id="product-table">
-                            <tbody id=table-body>
+                            <tbody>
                             <tr>
-                                <th>Product <i class="fa fa-exchange" id="product-name"></i></td><th>Unit Price <i class="fa fa-sort" id="product-unit-price"></i></th><th>Quantity</th><th><i class="fa fa-sort" id="product-total-price"></i>Total</th>
-                            </tr>
-                            <tr>
-                                <td><p>Aniseed syrop</p><p>1412</p></td><td><span>65.43</span> EUR</td><td>8990</td><td><span>56034.32</span> EUR</td>
-                            </tr>
-                            <tr>
-                                <td><p>Aniseed syrop</p><p>1412</p></td><td><span>65.43</span> EUR</td><td>8990</td><td><span>56034.32</span> EUR</td>
-                            </tr>
-                            <tr>
-                                <td><p>Aniseed syrop</p><p>1412</p></td><td><span>65.43</span> EUR</td><td>8990</td><td><span>56034.32</span> EUR</td>
-                            </tr>
-                            <tr>
-                                <td><p>Aniseed syrop</p><p>1412</p></td><td><span>65.43</span> EUR</td><td>8990</td><td><span>56034.32</span> EUR</td>
+                                <th>Product <i class="fa fa-sort" id="product-name"></i></td><th>Unit Price <i class="fa fa-sort" id="product-unit-price"></i></th><th>Quantity</th><th><i class="fa fa-sort" id="product-total-price"></i>Total</th>
                             </tr>
                             </tbody>
                         </table>
-                        </div>
                     </div>
                     <div class="order-table-alt">
                         <p class="line-items">Line Items</p>
