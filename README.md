@@ -1,2 +1,2 @@
-# LeverX-Cou
+# LeverX-Courses
 LeverX Project
