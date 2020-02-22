@@ -1,2 +1,2 @@
-# vladimirgitsarev.github.io
+# LeverX-Cou
 LeverX Project
